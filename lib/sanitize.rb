@@ -80,6 +80,7 @@ class Sanitize
 
   # Returns a sanitized copy of _html_.
   def clean(html)
+    return if html.nil?
     dupe = html.dup
     clean!(dupe) || dupe
   end
@@ -87,6 +88,7 @@ class Sanitize
   # Performs clean in place, returning _html_, or +nil+ if no changes were
   # made.
   def clean!(html)
+    return if html.nil?
     @whitelist_nodes = []
     fragment = Nokogiri::HTML::DocumentFragment.parse(html)
     clean_node!(fragment)
